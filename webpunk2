@@ -141,8 +141,7 @@ ${font Wargames-Regular:size=16}${color 3300ff}NET ${stippled_hr 2}$color$font
               ${downspeed wlp0s20f3}/s (${totaldown wlp0s20f3})${alignr}${upspeed wlp0s20f3}/s (${totalup wlp0s20f3})
 
 ### GPU ###
-  ${font Wargames-Regular: size=16}${color 000000}GRAPHIC ${stippled_hr 2} 
+   ${font Wargames-Regular: size=16}${color 000000}GRAPHIC ${stippled_hr 2} 
 $color$font Current Temp ${alignr}${execi 5 optirun nvidia-smi -a -q | grep -i  "GPU current temp " | awk '{print $5}'} °C
 ${execi 5 optirun nvidia-smi -q | grep "Gpu" | awk '{print $1 }'} ${alignr}${execi 5 optirun nvidia-smi -q | grep "Gpu" | awk '{print $3}'} %
-
-  
+${color9}${execbar optirun nvidia-smi -q | grep "Gpu" | awk '{print $3}'} 
