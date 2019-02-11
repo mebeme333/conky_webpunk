@@ -43,7 +43,7 @@ own_window_colour 000000
 own_window_hints undecorated,below,skip_pager,skip_taskbar
 #all options for own_window_type are normal, desktop, dock, panel or override
 #best for Linux Mint 17.1 Cinnamon
-own_window_type override
+own_window_type normal
 #best for ge inspira14.10 Utopic
 #own_window_type normal
 own_window_transparent true
@@ -133,15 +133,16 @@ ${font Wargames-Regular:size=16}${color ff00cc}HDD ${stippled_hr 2}$color$font
    READ										  WRITE
    ${color ff00cc}${diskiograph_read /dev/sda 24,120 300001 ff00cc}$color${alignr} ${color ff00cc}${diskiograph_write /dev/sda 24,120 300001 ff00cc}$color
               ${diskio_read}/s${alignr}${diskio_write}/s
-   
 ### NETWORK ###
 ${font Wargames-Regular:size=16}${color 3300ff}NET ${stippled_hr 2}$color$font
-   ${wireless_essid wlan0}${alignr}WLAN @ 2.4GHz
-   
+   ${wireless_essid wlan0}${alignr} 
    DOWNLOAD 									UPLOAD
   ${color 3300ff}${downspeedgraph wlp0s20f3 24,120 300001 3300ff}$color${alignr}${color 3300ff}${upspeedgraph wlp0s20f3 24,120 300001 3300ff}$color
               ${downspeed wlp0s20f3}/s (${totaldown wlp0s20f3})${alignr}${upspeed wlp0s20f3}/s (${totalup wlp0s20f3})
 
 ### GPU ###
-  ${font Wargames-Regular: size=16}${color 0000ff}GRAPHIC ${stippled_hr 2} 
-$font${alignr}${color 3300ff}${execi 5 optirun nvidia-smi -a -q | grep -i  "GPU current temp " | awk '{print $5}'} °C
+  ${font Wargames-Regular: size=16}${color 000000}GRAPHIC ${stippled_hr 2} 
+$color$font Current Temp ${alignr}${execi 5 optirun nvidia-smi -a -q | grep -i  "GPU current temp " | awk '{print $5}'} °C
+${execi 5 optirun nvidia-smi -q | grep "Gpu" | awk '{print $1 }'} ${alignr}${execi 5 optirun nvidia-smi -q | grep "Gpu" | awk '{print $3}'} %
+
+  
